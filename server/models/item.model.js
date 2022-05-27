@@ -9,3 +9,6 @@ const itemSchema = new Schema({
     price: Number,
     quantity: Number,
 })
+
+const Item = mongoose.model("item", itemSchema)
+module.exports = Item
