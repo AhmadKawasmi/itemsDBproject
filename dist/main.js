@@ -10,19 +10,21 @@ const getInputValues = function() {
     const name = nameInput.value
     const brand = brandInput.value
     const price = priceInput.value
-    const qtn = quantityInput.value
-    return { name, brand, price, qtn }
+    const quantity = quantityInput.value
+    return { name, brand, price, quantity }
 }
 
 const addItemToDB = async function() {
     const item = getInputValues()
-    const DbRes = await $.post('/item/addNewItems', item)
+    const DbRes = await axios.post('/item/addNewItems', item)
     console.log(DbRes);
+    getItemsFromDB()
 }
 
 addItemBtn.addEventListener('click', addItemToDB)
 
 const renderItems = function(items) {
+    itemsContainer.innerHTML = ""
     items.forEach((item) => {
         const { name, brand, price, quantity, _id } = item
         const itemContainer = `
